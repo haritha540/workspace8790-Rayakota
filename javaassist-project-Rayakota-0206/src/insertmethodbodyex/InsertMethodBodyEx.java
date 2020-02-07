@@ -33,7 +33,7 @@ public class InsertMethodBodyEx extends ClassLoader {
 				case 1:
 					System.out.println("=============================================");
 					System.out.print(
-							"Enter a application class name a method name,a method parameter index separated by , eg ComponentApp,foo,1 or ServiceApp,bar,2 \n");
+							"Enter a application class name ,a method name,a method parameter index separated by , eg ComponentApp,foo,1 or ServiceApp,bar,2 \n");
 					String[] test = UtilMenu.getArguments();
 					if (test.length != 3) {
 						System.out.println("[WRN] Invalid input");
@@ -42,13 +42,10 @@ public class InsertMethodBodyEx extends ClassLoader {
 
 					} else {
 						try {
-							// ClassPool pool = ClassPool.getDefault();
-							// pool.insertClassPath(INPUT_DIR);
-							// CtClass cc = pool.get(PKG_NAME + test[0]);
-							// CtMethod m = cc.getDeclaredMethod(test[1]);
 							ClassPool defaultPool = ClassPool.getDefault();
 							defaultPool.insertClassPath(INPUT_DIR);
 							CtClass cc = defaultPool.get(PKG_NAME + test[0]);
+							cc.defrost();
 							CtMethod m = cc.getDeclaredMethod(test[1]);
 							m.useCflow(test[1]);
 
