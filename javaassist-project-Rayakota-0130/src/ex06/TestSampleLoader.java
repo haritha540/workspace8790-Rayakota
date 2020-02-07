@@ -43,7 +43,7 @@ public class TestSampleLoader extends ClassLoader {
 						TARGET_FIELD = test[1];
 						TestSampleLoader loader = new TestSampleLoader();
 						try {
-							Class<?> c = loader.findClass(TARGET_APP);
+							Class<?> c = loader.loadClass(TARGET_APP);
 							c.getDeclaredMethod("main", new Class[] { String[].class }). //
 									invoke(null, new Object[] { args });
 						} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -74,7 +74,8 @@ public class TestSampleLoader extends ClassLoader {
 			if (name.equals(TARGET_APP)) {
 				CtField f = new CtField(CtClass.doubleType, TARGET_FIELD, cc);
 				f.setModifiers(Modifier.PUBLIC);
-				cc.addField(f);
+				// cc.addField(f);
+				cc.addField(f, CtField.Initializer.constant(30.0));
 			}
 			byte[] b = cc.toBytecode();
 			return defineClass(name, b, 0, b.length);
