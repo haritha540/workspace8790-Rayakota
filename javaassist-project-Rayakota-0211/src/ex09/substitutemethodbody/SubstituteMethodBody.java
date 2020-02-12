@@ -22,8 +22,8 @@ public class SubstituteMethodBody extends ClassLoader {
 	static String TARGET_MY_APP;
 	static String MOVE_METHOD;
 	static final String DRAW_METHOD = "draw";
-	static String METHOD_arg;
-	static String METHOD_value;
+	static String METHOD_ARG;
+	static String METHOD_VALUE;
 	static String _L_ = System.lineSeparator();
 	private static final String PKG_NAME = "target" + ".";
 	static List<String> my_test = new ArrayList<String>();
@@ -49,8 +49,8 @@ public class SubstituteMethodBody extends ClassLoader {
 				} else {
 					TARGET_MY_APP = PKG_NAME + test[0];
 					MOVE_METHOD = test[1];
-					METHOD_arg = test[2];
-					METHOD_value = test[3];
+					METHOD_ARG = test[2];
+					METHOD_VALUE = test[3];
 					if (my_test.contains(MOVE_METHOD)) {
 						System.out.println("[WRN] This method " + MOVE_METHOD + " has already been modified");
 						System.out.println("=============================================");
@@ -112,9 +112,9 @@ public class SubstituteMethodBody extends ClassLoader {
 						System.out.println("[Edited by ClassLoader] method name: " + methodName + ", line: "
 								+ call.getLineNumber());
 						String block2 = "{" + _L_ //
-								+ "System.out.println(\"\tReset param " + METHOD_arg + " to " + METHOD_value
+								+ "System.out.println(\"\tReset param " + METHOD_ARG + " to " + METHOD_VALUE
 								+ ".\t\"); " + _L_ //
-								+ "$" + METHOD_arg + "=" + METHOD_value + ";" + _L_ //
+								+ "$" + METHOD_ARG + "=" + METHOD_VALUE + ";" + _L_ //
 								+ "$proceed($$); " + _L_ //
 								+ "}";
 						System.out.println("[DBG] BLOCK2: " + block2);
