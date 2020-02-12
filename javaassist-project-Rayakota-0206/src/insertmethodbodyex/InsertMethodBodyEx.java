@@ -38,7 +38,7 @@ public class InsertMethodBodyEx extends ClassLoader {
 					if (test.length != 3) {
 						System.out.println("[WRN] Invalid input");
 						System.out.println("=============================================");
-						System.out.println("Enter two variables separated by, \n");
+						System.out.println("Enter three variables separated by, \n");
 
 					} else {
 						try {
